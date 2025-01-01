@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Vacaybay</string>
+    <string name="introTitle">Book your <font color="#247BA0">\n dream</font> vacation</string>
+    <string name="subIntro">Lorem ipsum odor amet, consectetuer\n adipiscing elit. Cubilia sagittis rutrum\n blandit ex interdum feugiat.</string>
+</resources>

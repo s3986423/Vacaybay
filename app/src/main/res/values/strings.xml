@@ -2,4 +2,5 @@
     <string name="app_name">Vacaybay</string>
     <string name="introTitle">Book your <font color="#247BA0">\n dream</font> vacation</string>
     <string name="subIntro">Lorem ipsum odor amet, consectetuer\n adipiscing elit. Cubilia sagittis rutrum\n blandit ex interdum feugiat.</string>
+    <string name="placeholderTxt">Lorem ipsum odor amet, consectetuer adipiscing elit. Cubilia sagittis rutrum blandit ex interdum feugiat. Lorem ipsum odor amet, consectetuer adipiscing elit. Cubilia sagittis rutrum blandit ex interdum feugiat.</string>
 </resources>

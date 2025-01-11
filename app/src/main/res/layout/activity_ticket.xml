@@ -274,7 +274,6 @@
                         android:layout_marginBottom="8dp"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/dash_line" />
-
                     <ImageView
                         android:id="@+id/imageView10"
                         android:layout_width="match_parent"

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477449835943",
+    "project_id": "vacaybay-0",
+    "storage_bucket": "vacaybay-0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477449835943:android:02864e5853179938ae5282",
+        "android_client_info": {
+          "package_name": "com.example.vacaybay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh_fN18706gdrlZpuA-LVAiLQ6j2FX2WI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

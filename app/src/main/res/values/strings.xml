@@ -3,4 +3,10 @@
     <string name="introTitle">Book your <font color="#247BA0">\n dream</font> vacation</string>
     <string name="subIntro">Lorem ipsum odor amet, consectetuer\n adipiscing elit. Cubilia sagittis rutrum\n blandit ex interdum feugiat.</string>
     <string name="placeholderTxt">Lorem ipsum odor amet, consectetuer adipiscing elit. Cubilia sagittis rutrum blandit ex interdum feugiat. Lorem ipsum odor amet, consectetuer adipiscing elit. Cubilia sagittis rutrum blandit ex interdum feugiat.</string>
+    <string name="back_button">Back</string>
+    <string name="promotions">Promotions</string>
+    <string name="promotion_1">10% Off for Four Seasons Villa</string>
+    <string name="promotion_1_desc">Enjoy 10% off during your next stay at Four Seasons Villas.</string>
+    <string name="see_details">See Details</string>
+    <string name="close">Close</string>
 </resources>

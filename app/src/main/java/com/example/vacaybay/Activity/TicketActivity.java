@@ -45,7 +45,7 @@ public class TicketActivity extends BaseActivity {
         binding.timeTxt.setText(object.getTimeTour());
         binding.tourGuideNameTxt.setText(object.getTourGuideName());
 
-        binding.callBtn.setOnClickListener(new View.OnClickListener() {
+        binding.messageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
@@ -54,7 +54,7 @@ public class TicketActivity extends BaseActivity {
                 startActivity(sendIntent);
             }
         });
-        binding.messageBtn.setOnClickListener(new View.OnClickListener() {
+        binding.callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phone = object.getTourGuidePhone();

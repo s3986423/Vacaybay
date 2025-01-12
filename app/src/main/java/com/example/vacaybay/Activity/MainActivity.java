@@ -10,11 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 
+import com.example.vacaybay.Adapter.CategoryAdapter;
 import com.example.vacaybay.Adapter.SliderAdapter;
+import com.example.vacaybay.Domain.Category;
 import com.example.vacaybay.Domain.Location;
 import com.example.vacaybay.Domain.SliderItems;
 import com.example.vacaybay.R;
@@ -36,6 +39,35 @@ public class MainActivity extends BaseActivity {
 
         initLocation();
         initBanners();
+        initCategory();
+    }
+
+    private void initCategory() {
+        DatabaseReference myRef = database.getReference("Category");
+        binding.progressBarCategory.setVisibility(View.VISIBLE);
+        ArrayList<Category> list = new ArrayList<>();
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for(DataSnapshot issue:snapshot.getChildren()) {
+                        list.add(issue.getValue(Category.class));
+                    }
+                    if(!list.isEmpty()) {
+                        binding.recyclerViewCategory.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
+                        RecyclerView.Adapter adapter= new CategoryAdapter(list);
+                        binding.recyclerViewCategory.setAdapter(adapter);
+                    }
+                    binding.progressBarCategory.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void initLocation() {

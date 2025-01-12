@@ -1,5 +1,6 @@
 package com.example.vacaybay.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -8,6 +9,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -52,6 +55,32 @@ public class MainActivity extends BaseActivity {
         initCategory();
         initRecommended();
         initPopular();
+
+        // Set up ChipNavigationBar navigation
+        setupBottomNavigation();
+    }
+
+    private void setupBottomNavigation() {
+        binding.chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int id) {
+                    if (id == R.id.explorer) {
+                        // Already on home, do nothing
+                    } else if (id == R.id.favorites) {
+                        // Navigate to FavoritesActivity (create if needed)
+//                        startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
+                    } else if (id == R.id.cart) {
+                        // Navigate to BookmarkActivity (create if needed)
+//                        startActivity(new Intent(MainActivity.this, BookmarkActivity.class));
+                    } else if (id == R.id.promotion) {
+                        // Navigate to PromotionsActivity
+                        startActivity(new Intent(MainActivity.this, PromotionsActivity.class));
+                    } else if (id == R.id.profile) {
+                        // Navigate to ProfileActivity (create if needed)
+//                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                    }
+            }
+        });
     }
 
     private void initPopular(){

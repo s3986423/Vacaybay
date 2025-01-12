@@ -38,7 +38,9 @@ public class DetailActivity extends AppCompatActivity {
         binding.bedTxt.setText(""+object.getBed());
         binding.durationTxt.setText(object.getDuration());
         binding.distanceTxt.setText(object.getDistance());
+        binding.descriptionTxt.setText(object.getDescription());
         binding.addressTxt.setText(object.getAddress());
+        binding.ratingTxt.setText(object.getScore()+" Rating");
         binding.ratingBar.setRating((float) object.getScore());
 
         Glide.with(DetailActivity.this)

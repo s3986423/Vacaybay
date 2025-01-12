@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
         });
     }
     private void initRecommended(){
-        DatabaseReference myRef = database.getReference("Popular");
+        DatabaseReference myRef = database.getReference("Item");
         binding.progressBarRecommended.setVisibility(View.VISIBLE);
         ArrayList<ItemDomain> list = new ArrayList<>();
 

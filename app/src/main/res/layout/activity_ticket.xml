@@ -192,13 +192,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Total Guest"
+                            android:text="Total Bed"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="@+id/textView17"
                             app:layout_constraintTop_toBottomOf="@+id/timeTxt" />
 
                         <TextView
-                            android:id="@+id/guestTxt"
+                            android:id="@+id/BedTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"

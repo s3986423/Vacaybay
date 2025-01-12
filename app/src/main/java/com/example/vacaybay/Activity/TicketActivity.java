@@ -35,32 +35,41 @@ public class TicketActivity extends BaseActivity {
         Glide.with(TicketActivity.this)
                 .load(object.getPic())
                 .into(binding.pic);
+
         Glide.with(TicketActivity.this)
                 .load(object.getTourGuidePic())
                 .into(binding.profile);
+
+        // Return to previous screen
         binding.backBtn.setOnClickListener(v -> finish());
+
+        // Title, duration, bed, etc.
         binding.titleTxt.setText(object.getTitle());
+
+        // Duration in the Ticket
         binding.durationTxt.setText(object.getDuration());
+
+        // The "start date" the user picked in the Detail page
         binding.tourGuideTxt.setText(object.getDateTour());
+
+        // The bed count from the Detail page
+        binding.BedTxt.setText(String.valueOf(object.getBed()));
+
+        // If you have time and date for the Tour
         binding.timeTxt.setText(object.getTimeTour());
         binding.tourGuideNameTxt.setText(object.getTourGuideName());
 
-        binding.messageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setData(Uri.parse("sms:" + object.getTourGuidePhone()));
-                sendIntent.putExtra("sms_body", "type your message");
-                startActivity(sendIntent);
-            }
+        // For message/call
+        binding.messageBtn.setOnClickListener(v -> {
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setData(Uri.parse("sms:" + object.getTourGuidePhone()));
+            sendIntent.putExtra("sms_body", "type your message");
+            startActivity(sendIntent);
         });
-        binding.callBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String phone = object.getTourGuidePhone();
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone,null));
-                startActivity(intent);
-            }
+        binding.callBtn.setOnClickListener(v -> {
+            String phone = object.getTourGuidePhone();
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone,null));
+            startActivity(intent);
         });
     }
     private void getIntentExtra(){

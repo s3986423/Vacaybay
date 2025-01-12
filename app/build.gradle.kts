@@ -52,5 +52,7 @@ dependencies {
     implementation(libs.chip.navigation.bar)
     implementation(libs.viewpager2)
     implementation(libs.glide)
-    implementation("com.google.dagger:hilt-android:2.44.1") // Replace with the latest version
+    implementation("com.google.dagger:hilt-android:2.44.1")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }

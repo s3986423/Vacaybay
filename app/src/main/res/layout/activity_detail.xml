@@ -351,15 +351,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" / Person"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/priceTxt"
-            app:layout_constraintStart_toEndOf="@+id/priceTxt"
-            app:layout_constraintTop_toTopOf="@+id/priceTxt" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

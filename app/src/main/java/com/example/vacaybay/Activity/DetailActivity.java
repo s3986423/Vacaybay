@@ -1,11 +1,11 @@
 package com.example.vacaybay.Activity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -16,15 +16,23 @@ import com.bumptech.glide.Glide;
 import com.example.vacaybay.Activity.Domain.ItemDomain;
 import com.example.vacaybay.R;
 import com.example.vacaybay.databinding.ActivityDetailBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class DetailActivity extends AppCompatActivity {
+
     ActivityDetailBinding binding;
     private ItemDomain object;
 
     private long startDateInMillis = 0;
     private long endDateInMillis = 0;
+
+    private Context context;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +40,9 @@ public class DetailActivity extends AppCompatActivity {
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 1) Get the item passed in
+        mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
         getIntentExtra();
 
         // 2) Populate the screen
@@ -49,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
     // ----------------------------------------------------------------
     // Where you set the data from object into your views
     // ----------------------------------------------------------------
-    private void setVariable(){
+    private void setVariable() {
         if (object == null) return;
 
         binding.titleTxt.setText(object.getTitle());
@@ -69,10 +79,9 @@ public class DetailActivity extends AppCompatActivity {
                 .load(object.getPic())
                 .into(binding.pic);
 
+        // Only keep ONE listener for addToCartBtn
         binding.addToCartBtn.setOnClickListener(v -> {
-            // When user clicks Add to Cart, we move to TicketActivity
-            // We will pass the updated object that now includes the chosen start date,
-            // the updated duration, and the chosen bed.
+            addToCart();
             Intent intent = new Intent(DetailActivity.this, TicketActivity.class);
             intent.putExtra("object", object);
             startActivity(intent);
@@ -227,7 +236,38 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void getIntentExtra(){
+    private void getIntentExtra() {
         object = (ItemDomain) getIntent().getSerializableExtra("object");
+    }
+
+    private void addToCart() {
+        // Check if the user is logged in
+        if (mAuth.getCurrentUser() != null) {
+            String userID = mAuth.getCurrentUser().getUid(); // Get current user's ID
+
+            // Create a HashMap to store the booking details
+            HashMap<String, Object> bookingMap = new HashMap<>();
+            bookingMap.put("title", object.getTitle());
+            bookingMap.put("address", object.getAddress());
+            bookingMap.put("bed", object.getBed());
+            bookingMap.put("date", object.getDateTour());
+            bookingMap.put("duration", object.getDuration());
+            bookingMap.put("tourGuideName", object.getTourGuideName()); // If applicable
+            bookingMap.put("userID", userID); // Link to the current user
+
+            // Store the booking in Firestore
+            firestore.collection("bookings")
+                    .add(bookingMap)
+                    .addOnSuccessListener(documentReference -> {
+                        // Optionally notify the user
+                        Toast.makeText(DetailActivity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle error
+                        Toast.makeText(DetailActivity.this, "Failed to add to Cart", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(DetailActivity.this, "No current user detected", Toast.LENGTH_SHORT).show();
+        }
     }
 }

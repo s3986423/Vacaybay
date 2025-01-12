@@ -5,52 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.adminActivity.AdminBooking">
+    >
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/booking_list_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Test view -->
-            <include
-                layout="@layout/booking_list_card"
-                tools:ignore="MissingId" />
-
-            <include
-                layout="@layout/booking_list_card"
-                tools:ignore="MissingId" />
-
-            <include
-                layout="@layout/booking_list_card"
-                tools:ignore="MissingId" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:cnb_menuResource="@menu/menu_bottom_admin"
-        app:cnb_iconSize="20sp"
-        app:cnb_iconColor="@color/blue"
-        app:cnb_radius="50dp"
-        app:cnb_orientationMode="horizontal"
-        app:cnb_unselectedColor="@color/blue"
-        android:background="@color/white"
-        android:elevation="3dp"
-        android:padding="4dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBookings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

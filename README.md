@@ -15,8 +15,8 @@
 | **Team Member**     |                       **Task**                                                                     |
 |---------------------|----------------------------------------------------------------------------------------------------|
 | To Nhat Duy         | Promotions page, Login & Register UI, README                                                       |
-| Nguyen Huu Quoc Huy | Front-end drafting, configuring Firebase, Login & Register functionality, back-end, multiple fixes |
-| Huynh Nhat Anh      | Admin booking, back-end                                                                            |
+| Nguyen Huu Quoc Huy | Front-end drafting, configuring Firebase, authentication                                           |
+| Huynh Nhat Anh      | Booking process, booking lists, adapters                                                           |
 | Mai Xuan Huy        | Integrating Google Maps                                                                            |
 | Hoang Nghia Tri Hung| N/A                                                                                                |
 
@@ -33,10 +33,11 @@
    - Customers can select a vacation and see its details, add it to their cart, and get the ticket.
 4. **Ticket Details**
    - Customers can see the start date,  time, tour duration, total number of guests, barcode for the ticket, tour guide's name.
-   - Customers can text or call the tour guide by clicking on the chatbox or phone icon and they will be redirected to the phone app or messaging app.  
+   - Customers can text or call the tour guide by clicking on the chatbox or phone icon and they Editwill be redirected to the phone app or messaging app.  
 5. **Admin-based Functionalities**
-   - t
-6. 
+   - View all bookings
+6. **Real time communication**
+   - Customer can send SMS message or call the Tour Guide
 
 ---
 
@@ -44,7 +45,10 @@
 
 - **Language**: Java
 - **Libraries/Dependencies**: 
-- **Database**: Firebase
+- **Database**: 
+   - Firebase Authentication: Used to handle login/register and store users' password with security
+   - Firese Realtime Database: Used to store the locations files
+   - Firebase Firestore: Used to handle booking progress and customer data
 - **Gradle & Build Tools**: Gradle is used for building the project, managing dependencies, and handling tasks.
 
 ---

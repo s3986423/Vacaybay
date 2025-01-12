@@ -1,6 +1,7 @@
 package com.example.vacaybay.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import androidx.activity.EdgeToEdge;
@@ -9,8 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
 
+import com.example.vacaybay.Adapter.SliderAdapter;
 import com.example.vacaybay.Domain.Location;
+import com.example.vacaybay.Domain.SliderItems;
 import com.example.vacaybay.R;
 import com.example.vacaybay.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +35,7 @@ public class MainActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         initLocation();
+        initBanners();
     }
 
     private void initLocation() {
@@ -45,6 +52,41 @@ public class MainActivity extends BaseActivity {
                     ArrayAdapter<Location> adapter = new ArrayAdapter<>(MainActivity.this, R.layout.sp_item, list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.locationSp.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void banners(ArrayList<SliderItems> items){
+        binding.viewPagerSlider.setAdapter(new SliderAdapter(items, binding.viewPagerSlider));
+        binding.viewPagerSlider.setClipToPadding(false);
+        binding.viewPagerSlider.setClipChildren(false);
+        binding.viewPagerSlider.setOffscreenPageLimit(3);
+        binding.viewPagerSlider.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        binding.viewPagerSlider.setPageTransformer(compositePageTransformer);
+    }
+
+    private void initBanners(){
+        DatabaseReference myRef = database.getReference("Banner");
+        binding.progressBarBanner.setVisibility(View.VISIBLE);
+        ArrayList<SliderItems> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot issue: snapshot.getChildren()){
+                        items.add(issue.getValue(SliderItems.class));
+                    }
+                    banners(items);
+                    binding.progressBarBanner.setVisibility(View.GONE);
                 }
             }
 

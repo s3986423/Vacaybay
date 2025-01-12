@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
                         list.add(issue.getValue(ItemDomain.class));
                     }
                     if(!list.isEmpty()) {
-                        binding.recyclerViewPopular.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL,false));
+                        binding.recyclerViewPopular.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
                         RecyclerView.Adapter adapter= new PopularAdapter(list);
                         binding.recyclerViewPopular.setAdapter(adapter);
                     }

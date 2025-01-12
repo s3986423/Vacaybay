@@ -40,12 +40,10 @@ public class MyBookingActivity extends AppCompatActivity {
         binding = ActivityMyBookingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Initialize Firebase
         firestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
 
-        // Set up RecyclerView
         bookingsRecyclerView = findViewById(R.id.bookingRecyclerView);
         bookingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         bookingAdapter = new BookingAdapter(this, bookingList);
@@ -58,25 +56,20 @@ public class MyBookingActivity extends AppCompatActivity {
     }
 
     private void fetchBookings() {
-        // Get the current user's ID
         String userID = mAuth.getCurrentUser().getUid();
 
-        // Query Firestore for bookings linked to the current user
         firestore.collection("bookings")
                 .whereEqualTo("userID", userID)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
-                        // Clear the current list
                         bookingList.clear();
 
-                        // Add bookings to the list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             Booking booking = document.toObject(Booking.class);
                             bookingList.add(booking);
                         }
 
-                        // Notify the adapter about the data change
                         bookingAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(MyBookingActivity.this, "No bookings found.", Toast.LENGTH_SHORT).show();
@@ -94,16 +87,13 @@ public class MyBookingActivity extends AppCompatActivity {
                     startActivity(new Intent(MyBookingActivity.this, MainActivity.class));
                     Log.d("ChipNavigationBar", "Item selected: " + id);
                 } else if (id == R.id.favorites) {
-                    // Navigate to FavoritesActivity (create if needed)
 //                        startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
                 } else if (id == R.id.cart) {
 //                    startActivity(new Intent(MyBookingActivity.this, MyBookingActivity.class));
 //                    finish();
                 } else if (id == R.id.promotion) {
-                    // Navigate to PromotionsActivity
                     startActivity(new Intent(MyBookingActivity.this, PromotionsActivity.class));
                 } else if (id == R.id.profile) {
-                    // Navigate to ProfileActivity (create if needed)
 //                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 }
             }

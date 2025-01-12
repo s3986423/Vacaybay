@@ -67,12 +67,12 @@ public class MainActivity extends BaseActivity {
                     if (id == R.id.explorer) {
                         // Already on home, do nothing
                     } else if (id == R.id.favorites) {
-                        // Navigate to FavoritesActivity (create if needed)
+
 //                        startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
                     } else if (id == R.id.cart) {
                         startActivity(new Intent(MainActivity.this, MyBookingActivity.class));
                     } else if (id == R.id.promotion) {
-                        // Navigate to PromotionsActivity
+
                         startActivity(new Intent(MainActivity.this, PromotionsActivity.class));
                     } else if (id == R.id.profile) {
                         // Navigate to ProfileActivity (create if needed)

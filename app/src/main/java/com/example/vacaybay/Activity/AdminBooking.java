@@ -38,37 +38,30 @@ public class AdminBooking extends AppCompatActivity {
         binding = ActivityAdminBookingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Initialize Firebase Realtime Database
         firebaseDatabase = FirebaseDatabase.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
-        // Set up RecyclerView
         bookingsRecyclerView = findViewById(R.id.recyclerViewBookings);
         bookingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         bookingAdminAdapter = new BookingAdminAdapter(this, bookingList);
         bookingsRecyclerView.setAdapter(bookingAdminAdapter);
 
-        // Fetch bookings from Firebase
         fetchBookings();
 
     }
 
     private void fetchBookings() {
-        // Query Firestore for all bookings (no userID filter)
         firestore.collection("bookings")
-                .get()  // Get all documents in the "bookings" collection
+                .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
-                        // Clear the current list
                         bookingList.clear();
 
-                        // Add bookings to the list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             Booking booking = document.toObject(Booking.class);
                             bookingList.add(booking);
                         }
 
-                        // Notify the adapter about the data change
                         bookingAdminAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(AdminBooking.this, "No bookings found.", Toast.LENGTH_SHORT).show();

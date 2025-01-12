@@ -33,7 +33,7 @@
    - Customers can select a vacation and see its details, add it to their cart, and get the ticket.
 4. **Ticket Details**
    - Customers can see the start date,  time, tour duration, total number of guests, barcode for the ticket, tour guide's name.
-   - Customers can text or call the tour guide by clicking on the chatbox or phone icon and they Editwill be redirected to the phone app or messaging app.  
+   - Customers can text or call the tour guide by clicking on the chatbox or phone icon and they will be redirected to the phone app or messaging app.  
 5. **Admin-based Functionalities**
    - View all bookings
 6. **Real time communication**
@@ -54,11 +54,10 @@
 - **Libraries/Dependencies**: 
 - **Database**: 
    - Firebase Authentication: Used to handle login/register and store users' password with security
-   - Firese Realtime Database: Used to store the locations files
+   - Firebase Realtime Database: Used to store the locations files
    - Firebase Firestore: Used to handle booking progress and customer data
 - **Gradle & Build Tools**: Gradle is used for building the project, managing dependencies, and handling tasks.
 - **Google Map**: Location and Direction in Google Map.
----
 
 
 

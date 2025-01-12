@@ -35,6 +35,42 @@
         android:hint="@string/enter_your_email"/>
 
     <TextView
+        android:id="@+id/name_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_title"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/name_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:hint="@string/enter_your_name"/>
+
+    <TextView
+        android:id="@+id/phone_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/phone_title"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/phone_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/enter_your_phone"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:padding="12dp" />
+
+    <TextView
         android:id="@+id/pwd_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

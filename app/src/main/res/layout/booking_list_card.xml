@@ -11,30 +11,31 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Booking Date and ID -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/booking_date"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Booking on - 23 Jan 2023"
+                android:text="Paradise Island"
                 android:textColor="@color/blue"
                 android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/booking_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Booking ID - x392"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:gravity="end"
-                android:textFontWeight="1"/>
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/cusomter_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="abcd@gmail.com"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:gravity="end"
+            android:textFontWeight="1"/>
 
 
         <LinearLayout
@@ -44,50 +45,22 @@
             android:layout_marginTop="8dp">
 
             <TextView
-                android:id="@+id/booking_details"
+                android:id="@+id/booking_beds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="2 Beds - 5 Nights"
+                android:text="2 Beds"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/payment"
+                android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cash/Banking"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:gravity="end"
-                android:textFontWeight="1"/>
-
-        </LinearLayout>
-
-        <!-- Check-In and Check-Out -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:id="@+id/checkin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:text="Check-In:"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/checkout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:textStyle="bold"
-                android:text="Check-Out:"
+                android:text="2 days"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -97,33 +70,49 @@
             android:layout_marginTop="8dp">
 
             <TextView
-                android:id="@+id/checkin_date"
+                android:id="@+id/guideTourName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="23 Mar 2023"
+                android:textStyle="bold"
+                android:text="Guide Tour:"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/checkout_date"
+                android:id="@+id/priceTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="25 Mar 2023"
+                android:textStyle="bold"
+                android:text="Price:"
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- Button -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@drawable/blue_bg"
-            style="@android:style/Widget.Button"
-            android:text="Details"
-            android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tran Nhat Quang"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="$700"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

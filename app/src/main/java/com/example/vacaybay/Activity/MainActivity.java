@@ -70,8 +70,7 @@ public class MainActivity extends BaseActivity {
                         // Navigate to FavoritesActivity (create if needed)
 //                        startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
                     } else if (id == R.id.cart) {
-                        // Navigate to BookmarkActivity (create if needed)
-//                        startActivity(new Intent(MainActivity.this, BookmarkActivity.class));
+                        startActivity(new Intent(MainActivity.this, MyBookingActivity.class));
                     } else if (id == R.id.promotion) {
                         // Navigate to PromotionsActivity
                         startActivity(new Intent(MainActivity.this, PromotionsActivity.class));

@@ -18,7 +18,7 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewholder> {
     private final List<Category> items;
     private int selectedPosition = -1;
-    private int lastSelectedPosition = 01;
+    private int lastSelectedPosition = -1;
     private Context context;
 
     public CategoryAdapter(List<Category> items) {
@@ -38,7 +38,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewho
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.Viewholder holder, int position) {
         Category item = items.get(position);
-        holder.binding.title.setText(item.getId());
+        holder.binding.title.setText(item.getName());
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getImagePath())

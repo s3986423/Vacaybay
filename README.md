@@ -12,13 +12,13 @@
 
 ## Workload Distribution
 
-| **Team Member**     |                       **Task**                                                                     |
-|---------------------|----------------------------------------------------------------------------------------------------|
-| To Nhat Duy         | Promotions page, Login & Register UI, README                                                       |
-| Nguyen Huu Quoc Huy | Front-end drafting, configuring Firebase, authentication                                           |
-| Huynh Nhat Anh      | Booking process, booking lists, adapters                                                           |
-| Mai Xuan Huy        | Integrating Google Maps                                                                            |
-| Hoang Nghia Tri Hung| N/A                                                                                                |
+| **Team Member**     | **Task**                                                                                        |
+|---------------------|-------------------------------------------------------------------------------------------------|
+| To Nhat Duy         | Promotions page, Login & Register UI                                                    |
+| Nguyen Huu Quoc Huy | Front-end drafting, configuring Firebase, authentication                                        |
+| Huynh Nhat Anh      | Booking process, booking lists, adapters                                                        |
+| Mai Xuan Huy        | Integrating Google Maps, Booking Date and Bed Selection, Price Caculation, Removing Hard Code UI |
+| Hoang Nghia Tri Hung| N/A ( Drop )                                                                                    |
 
 ---
 
@@ -37,7 +37,14 @@
 5. **Admin-based Functionalities**
    - View all bookings
 6. **Real time communication**
-   - Customer can send SMS message or call the Tour Guide
+   - Customer can send SMS message or call the Tour Guide.
+7. **Google Map**
+    - Location and Direction in Google Map.
+8. **Selection Date and Bed**
+    - Customer can select date and bed as wish.
+9. **Price Calculation**
+    - Price is calculated by date and bed.
+
 
 ---
 
@@ -50,15 +57,8 @@
    - Firese Realtime Database: Used to store the locations files
    - Firebase Firestore: Used to handle booking progress and customer data
 - **Gradle & Build Tools**: Gradle is used for building the project, managing dependencies, and handling tasks.
-
+- **Google Map**: Location and Direction in Google Map.
 ---
 
-## Known Bugs
-
-- **Bug 1** – 
-- **Bug 2** – 
-- *(Add or remove bugs as needed.)*
-
----
 
 

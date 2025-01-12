@@ -44,24 +44,16 @@ public class DetailActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         getIntentExtra();
-
-        // 2) Populate the screen
         setVariable();
-
-        // 3) Setup new pickers
         setupDurationPicker();
         setupBedPicker();
-
-        // 4) Setup location click (imageView102 -> open maps)
         setupLocationClick();
     }
 
-    // ----------------------------------------------------------------
-    // Where you set the data from object into your views
-    // ----------------------------------------------------------------
     private void setVariable() {
         if (object == null) return;
 
+        // Basic info
         binding.titleTxt.setText(object.getTitle());
         binding.priceTxt.setText("$" + object.getPrice());
         binding.backBtn.setOnClickListener(v -> finish());
@@ -75,22 +67,23 @@ public class DetailActivity extends AppCompatActivity {
         binding.ratingTxt.setText(object.getScore() + " Rating");
         binding.ratingBar.setRating((float) object.getScore());
 
+        // Load image
         Glide.with(this)
                 .load(object.getPic())
                 .into(binding.pic);
 
-        // Only keep ONE listener for addToCartBtn
+        // Button: add to cart
         binding.addToCartBtn.setOnClickListener(v -> {
             addToCart();
             Intent intent = new Intent(DetailActivity.this, TicketActivity.class);
             intent.putExtra("object", object);
             startActivity(intent);
         });
+
+        // Optionally, call updatePrice() once if you want the UI to show the correct initial total.
+        // updatePrice();
     }
 
-    // ----------------------------------------------------------------
-    // Let user pick start date + end date, then compute duration
-    // ----------------------------------------------------------------
     private void setupDurationPicker() {
         // When user taps imageView101, start date flow
         binding.imageView101.setOnClickListener(view -> pickStartDate());
@@ -114,7 +107,7 @@ public class DetailActivity extends AppCompatActivity {
                     String startDateString = selDay + "/" + (selMonth + 1) + "/" + selYear;
                     object.setDateTour(startDateString);
 
-                    // Pick the end date next
+                    // Next: pick the end date
                     pickEndDate();
                 },
                 year, month, day
@@ -162,17 +155,18 @@ public class DetailActivity extends AppCompatActivity {
 
         // Also store in the object
         object.setDuration(durationString);
+
+        // Update the price once the user has chosen a new duration
+        updatePrice();
     }
 
-    // ----------------------------------------------------------------
-    // Let user pick bed (1 to 3) from popup menu
-    // ----------------------------------------------------------------
     private void setupBedPicker() {
         binding.imageView103.setOnClickListener(view -> {
             PopupMenu popup = new PopupMenu(DetailActivity.this, binding.imageView103);
             popup.getMenu().add("1");
             popup.getMenu().add("2");
             popup.getMenu().add("3");
+            // You can add more bed options if you want
 
             popup.setOnMenuItemClickListener(item -> {
                 String chosen = item.getTitle().toString();
@@ -184,15 +178,15 @@ public class DetailActivity extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     object.setBed(1); // fallback
                 }
+
+                // Update price after user picks bed count
+                updatePrice();
                 return true;
             });
             popup.show();
         });
     }
 
-    // ----------------------------------------------------------------
-    // On imageView102 click: open Google Maps to the stored location
-    // ----------------------------------------------------------------
     private void setupLocationClick() {
         binding.imageView102.setOnClickListener(view -> {
             if (object != null && object.getLocation() != null && !object.getLocation().isEmpty()) {
@@ -203,7 +197,6 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
-    // Helper method to parse lat/lng and open Google Maps
     private void openLocationInMaps(String locationString) {
         try {
             // locationString is something like "11.920359,108.499469"
@@ -269,5 +262,34 @@ public class DetailActivity extends AppCompatActivity {
         } else {
             Toast.makeText(DetailActivity.this, "No current user detected", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void updatePrice() {
+        if (object == null) return;
+
+        // 1) Parse the day count from the duration string => e.g. "3D/2N" => 3 days
+        int days = 1;
+        try {
+            String durationString = object.getDuration(); // e.g. "3D/2N"
+            if (durationString != null && durationString.contains("D")) {
+                String daysPart = durationString.substring(0, durationString.indexOf("D"));
+                days = Integer.parseInt(daysPart.trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            days = 1; // fallback
+        }
+
+        // 2) Get the bed count
+        int beds = object.getBed();
+
+        // 3) Apply your pricing rules:
+        //    - $150 per day
+        //    - $50 per bed
+        //    If you want the first bed to be free and only charge for additional beds, replace "beds * 50" with "(beds - 1) * 50".
+        int totalPrice = (days * 150) + (beds * 50);
+
+        // 4) Update the UI with new total
+        binding.priceTxt.setText("$" + totalPrice);
     }
 }

@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity {
     ActivityMainBinding binding;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

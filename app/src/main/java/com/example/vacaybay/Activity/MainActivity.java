@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
         });
     }
     private void initRecommended(){
-        DatabaseReference myRef = database.getReference("Recommend");
+        DatabaseReference myRef = database.getReference("Popular");
         binding.progressBarRecommended.setVisibility(View.VISIBLE);
         ArrayList<ItemDomain> list = new ArrayList<>();
 
@@ -97,9 +97,9 @@ public class MainActivity extends BaseActivity {
                     if(!list.isEmpty()) {
                         binding.recyclerViewRecommended.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
                         RecyclerView.Adapter adapter= new RecommendedAdapter(list);
-                        binding.recyclerViewCategory.setAdapter(adapter);
+                        binding.recyclerViewRecommended.setAdapter(adapter);
                     }
-                    binding.progressBarCategory.setVisibility(View.GONE);
+                    binding.progressBarRecommended.setVisibility(View.GONE);
                 }
             }
 

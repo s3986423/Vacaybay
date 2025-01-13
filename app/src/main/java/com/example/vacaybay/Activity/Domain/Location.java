@@ -8,6 +8,11 @@ public class Location {
 
     }
 
+    @Override
+    public String toString() {
+        return Loc;
+    }
+
     public int getId() {
         return Id;
     }
